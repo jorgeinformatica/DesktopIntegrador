@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-feb-2019 19:46:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="Models.XIpModel" optimistic-lock="version" schema="public" table="x_ip_model">
+    <comment>x_ip.model</comment>
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="ip" type="string">
+      <column name="ip" not-null="false">
+        <comment>ip.model</comment>
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

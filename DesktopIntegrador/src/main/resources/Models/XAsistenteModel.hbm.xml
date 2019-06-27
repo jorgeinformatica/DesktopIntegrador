@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-feb-2019 19:03:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Models.XAsistenteModel" table="x_asistente_model" schema="public" optimistic-lock="version">
+        <comment>x_asistente.model</comment>
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="XPersonaModel" class="Models.XPersonaModel" fetch="select">
+            <column name="persona_id" not-null="true" unique="true">
+                <comment>Persona</comment>
+            </column>
+        </many-to-one>
+        <property name="password" type="string">
+            <column name="password" not-null="true">
+                <comment>Password</comment>
+            </column>
+        </property>
+        <set name="XLlamadaModels" table="x_llamada_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_asistente" not-null="true">
+                    <comment>Id Asistente</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XLlamadaModel" />
+        </set>
+        <set name="XAlarmaModels" table="x_alarma_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_asistente_atiende" not-null="true">
+                    <comment>Id Asistente Atiende</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XAlarmaModel" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-feb-2019 19:03:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Models.XDireccionModel" table="x_direccion_model" schema="public" optimistic-lock="version">
+        <comment>x_direccion.model</comment>
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="XCiudadModel" class="Models.XCiudadModel" fetch="select">
+            <column name="id_ciudad" not-null="true">
+                <comment>Id Ciudad</comment>
+            </column>
+        </many-to-one>
+        <property name="tipovia" type="string">
+            <column name="tipovia">
+                <comment>Tipo de v&#195;&#173;a</comment>
+            </column>
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion">
+                <comment>Direcci&#195;&#179;n</comment>
+            </column>
+        </property>
+        <property name="num" type="java.lang.Integer">
+            <column name="num">
+                <comment>Numero</comment>
+            </column>
+        </property>
+        <property name="piso" type="java.lang.Integer">
+            <column name="piso">
+                <comment>Planta</comment>
+            </column>
+        </property>
+        <property name="letra" type="string">
+            <column name="letra">
+                <comment>Letra</comment>
+            </column>
+        </property>
+        <property name="escalera" type="string">
+            <column name="escalera">
+                <comment>Escalera</comment>
+            </column>
+        </property>
+        <set name="XFamiliarModels" table="x_familiar_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="direccion" not-null="true">
+                    <comment>Direccion</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XFamiliarModel" />
+        </set>
+        <set name="XViviendaModels" table="x_vivienda_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_direccion" not-null="true">
+                    <comment>Id Direccion</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XViviendaModel" />
+        </set>
+        <set name="XCsModels" table="x_cs_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_direccion" not-null="true">
+                    <comment>Id Direccion</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XCsModel" />
+        </set>
+    </class>
+</hibernate-mapping>

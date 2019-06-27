@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-feb-2019 19:03:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Models.XLlamadaModel" table="x_llamada_model" schema="public" optimistic-lock="version">
+        <comment>x_llamada.model</comment>
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="XAsistenteModel" class="Models.XAsistenteModel" fetch="select">
+            <column name="id_asistente" not-null="false">
+                <comment>Id Asistente</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="XAvisoModel" class="Models.XAvisoModel" fetch="select">
+            <column name="id_aviso" not-null="true">
+                <comment>Id Aviso</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="XDependienteModel" class="Models.XDependienteModel" fetch="select">
+            <column name="id_dependiente" not-null="true">
+                <comment>Id Dependiente</comment>
+            </column>
+        </many-to-one>
+        <property name="fechaHora" type="timestamp">
+            <column name="fecha_hora" length="29">
+                <comment>Fecha_Hora</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-feb-2019 19:03:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Models.XCiudadModel" table="x_ciudad_model" schema="public" optimistic-lock="version">
+        <comment>x_ciudad.model</comment>
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="XProvinciaModel" class="Models.XProvinciaModel" fetch="select">
+            <column name="id_provincia" not-null="true">
+                <comment>Id Provincia</comment>
+            </column>
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" not-null="true">
+                <comment>Nombre</comment>
+            </column>
+        </property>
+        <property name="cp" type="string">
+            <column name="cp" length="5">
+                <comment>c&#195;&#179;digo Postal</comment>
+            </column>
+        </property>
+        <set name="XDireccionModels" table="x_direccion_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_ciudad">
+                    <comment>Id Ciudad</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XDireccionModel" />
+        </set>
+        <set name="XOfrecerrcModels" table="x_ofrecerrc_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_ciudad">
+                    <comment>Id Ciudad</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XOfrecerrcModel" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-feb-2019 19:03:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Models.XDependienteModel" table="x_dependiente_model" schema="public" optimistic-lock="version">
+        <comment>x_dependiente.model</comment>
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="XCsModel" class="Models.XCsModel" fetch="select">
+            <column name="id_cs">
+                <comment>Id Cs</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="XMedicoModel" class="Models.XMedicoModel" fetch="select">
+            <column name="id_medico">
+                <comment>Id Medico</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="XPersonaModel" class="Models.XPersonaModel" fetch="select" cascade="save-update">
+            <column name="persona_id" not-null="true" unique="true">
+                <comment>Persona</comment>
+            </column>
+        </many-to-one>
+        <property name="password" type="string">
+            <column name="password" not-null="true">
+                <comment>Password</comment>
+            </column>
+        </property>
+        <property name="genero" type="string">
+            <column name="genero">
+                <comment>Genero</comment>
+            </column>
+        </property>
+        <property name="fecNacim" type="date">
+            <column name="fec_nacim" length="13">
+                <comment>Fecha_Nacimiento</comment>
+            </column>
+        </property>
+        <property name="nss" type="string">
+            <column name="nss">
+                <comment>Seguridad_Social</comment>
+            </column>
+        </property>
+        <property name="fecAlta" type="date">
+            <column name="fec_alta" length="13">
+                <comment>Fecha_Alta</comment>
+            </column>
+        </property>
+        <set name="XLlamadaModels" table="x_llamada_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_dependiente" not-null="true">
+                    <comment>Id Dependiente</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XLlamadaModel" />
+        </set>
+        <set name="XAlarmaModels" table="x_alarma_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_dependiente" not-null="true">
+                    <comment>Id Dependiente</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XAlarmaModel" />
+        </set>
+        <set name="XViviendaModels" cascade="delete" table="x_vivienda_model" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="id_dependiente" not-null="true">
+                    <comment>Id Dependiente</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XViviendaModel" />
+        </set>
+        <set name="XAvisoModels" table="x_aviso_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_dependiente" not-null="true">
+                    <comment>Id Dependiente</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XAvisoModel" />
+        </set>
+        <set name="XEstadoModels" table="x_estado_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_dependiente" not-null="true">
+                    <comment>Id Dependiente</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XEstadoModel" />
+        </set>
+        <set name="XGeolocalizModels" cascade="delete" table="x_geolocaliz_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_dependiente" not-null="true">
+                    <comment>Id Dependiente</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XGeolocalizModel" />
+        </set>
+        <set name="XHistmedicoModels" table="x_histmedico_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_dependiente" not-null="true">
+                    <comment>Id Dependiente</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XHistmedicoModel" />
+        </set>
+        <set name="XContactofamiliarModels" cascade="delete" table="x_contactofamiliar_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="dependiente_id" not-null="true">
+                    <comment>Dependiente</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XContactofamiliarModel" />
+        </set>
+    </class>
+</hibernate-mapping>

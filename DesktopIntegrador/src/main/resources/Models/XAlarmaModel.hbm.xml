@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-feb-2019 19:03:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Models.XAlarmaModel" table="x_alarma_model" schema="public" optimistic-lock="version">
+        <comment>x_alarma.model</comment>
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="XAsistenteModel" class="Models.XAsistenteModel" fetch="select">
+            <column name="id_asistente_atiende" not-null="false">
+                <comment>Id Asistente Atiende</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="XDependienteModel" class="Models.XDependienteModel" fetch="select">
+            <column name="id_dependiente" not-null="false">
+                <comment>Id Dependiente</comment>
+            </column>
+        </many-to-one>
+        <property name="fechaHora" type="timestamp">
+            <column name="fecha_hora" length="29">
+                <comment>Fecha_Hora</comment>
+            </column>
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion">
+                <comment>Observaciones</comment>
+            </column>
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo">
+                <comment>Tipo</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

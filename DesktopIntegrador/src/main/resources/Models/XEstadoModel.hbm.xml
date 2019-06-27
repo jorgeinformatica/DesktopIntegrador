@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-feb-2019 19:03:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Models.XEstadoModel" table="x_estado_model" schema="public" optimistic-lock="version">
+        <comment>x_estado.model</comment>
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="XDependienteModel" class="Models.XDependienteModel" fetch="select">
+            <column name="id_dependiente" not-null="true">
+                <comment>Id Dependiente</comment>
+            </column>
+        </many-to-one>
+        <property name="fechaHora" type="timestamp">
+            <column name="fecha_hora" length="29">
+                <comment>Fecha_Hora</comment>
+            </column>
+        </property>
+        <property name="fechaHoraInicio" type="timestamp">
+            <column name="fecha_hora_inicio" length="29">
+                <comment>Fecha_Hora_Inicio</comment>
+            </column>
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion">
+                <comment>Observaciones</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
