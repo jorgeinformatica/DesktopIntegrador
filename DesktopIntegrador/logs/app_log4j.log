@@ -1,0 +1,14 @@
+2019-07-11 11:26:21,079 org.hibernate.Version logVersion - HHH000412: Hibernate Core {5.4.0.Final}
+2019-07-11 11:26:21,083 org.hibernate.cfg.Environment <clinit> - HHH000206: hibernate.properties not found
+2019-07-11 11:26:21,308 org.hibernate.orm.deprecation resolveEntity - HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+2019-07-11 11:26:21,615 org.hibernate.annotations.common.Version <clinit> - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-07-11 11:26:22,571 org.hibernate.orm.connections.pooling configure - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2019-07-11 11:26:22,581 org.hibernate.orm.connections.pooling buildCreator - HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:9999/BDgrup2]
+2019-07-11 11:26:22,582 org.hibernate.orm.connections.pooling buildCreator - HHH10001001: Connection properties: {user=grup2, password=****}
+2019-07-11 11:26:22,582 org.hibernate.orm.connections.pooling buildCreator - HHH10001003: Autocommit mode: false
+2019-07-11 11:26:22,585 org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl <init> - HHH000115: Hibernate connection pool size: 20 (min=1)
+2019-07-11 11:26:23,612 org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator initiateService - HHH000342: Could not obtain connection to query metadata : null
+2019-07-11 11:26:23,637 org.hibernate.dialect.Dialect <init> - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-07-11 11:26:23,665 org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl makeLobCreatorBuilder - HHH000422: Disabling contextual LOB creation as connection was null
+2019-07-11 11:26:23,667 org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions - SQL Error: 0, SQLState: 08004
+2019-07-11 11:26:23,667 org.hibernate.engine.jdbc.spi.SqlExceptionHelper logExceptions - Conexión rechazada. Verifique que el nombre del Host y el puerto sean correctos y que postmaster este aceptando conexiones TCP/IP.
