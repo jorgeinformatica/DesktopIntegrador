@@ -22,9 +22,9 @@ public class ResponseServer extends Thread {
     private BufferedReader br;
     private BufferedWriter bw;
     private String jsonText;
-    private String name;
-    private Socket accept;
-    private BLogic controller;
+    private final String name;
+    private final Socket accept;
+    private final BLogic controller;
 
     public ResponseServer(Socket accept, BLogic controller, String name) {
         this.name = name;
@@ -42,9 +42,7 @@ public class ResponseServer extends Thread {
             ControlTask control = new ControlTask(controller, accept, name, br, bw);
             controller.insertAlarm(resp, control);
             control.start();
-        } catch (IOException ex) {
-            Logger.getLogger(ResponseServer.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JSONException ex) {
+        } catch (IOException | JSONException ex) {
             Logger.getLogger(ResponseServer.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }

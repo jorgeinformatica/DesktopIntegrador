@@ -12,7 +12,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Map;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.swing.JRViewer;
 import org.apache.commons.io.IOUtils;
@@ -64,8 +63,6 @@ public class JasperClient {
     }
 
     public JRViewer insertReport() throws IOException, JRException {
-        Map parameters = null;
-
         OperationResult<InputStream> result = client
                 .authenticate(USER, PASS)
                 .reportingService()

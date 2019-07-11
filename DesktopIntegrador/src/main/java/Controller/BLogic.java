@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import org.codehaus.jettison.json.JSONException;
@@ -28,7 +27,8 @@ public class BLogic {
     private MainView mainView;
     private AppServer appServer;
     private HibernateController hibernate;
-    private ServerSocket serverSocket;
+    private final ServerSocket serverSocket;
+    @SuppressWarnings("FieldMayBeFinal")
     private XAsistenteModel asistente;
 
     public BLogic() {
@@ -54,6 +54,7 @@ public class BLogic {
         hibernate.start();
     }
 
+    @SuppressWarnings("null")
     private XAsistenteModel getAssistant() {
         AccessAsist access = null;
         try {

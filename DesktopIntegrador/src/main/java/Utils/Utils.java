@@ -26,6 +26,7 @@ import jdk.nashorn.api.scripting.URLReader;
  *
  * @author vesprada
  */
+@SuppressWarnings("UseOfObsoleteCollectionType")
 public class Utils {
 
     private final static String FILEMAP = "src/main/resources/Recursos/image.jpg";

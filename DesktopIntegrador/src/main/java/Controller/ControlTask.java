@@ -16,11 +16,11 @@ public class ControlTask extends Thread {
 
     private final int LIMIT = 30000;
     private boolean status;
-    private Socket accept;
-    private String name;
-    private BufferedReader br;
-    private BufferedWriter bw;
-    private BLogic controller;
+    private final Socket accept;
+    private final String name;
+    private final BufferedReader br;
+    private final BufferedWriter bw;
+    private final BLogic controller;
 
     ControlTask(BLogic controller, Socket accept, String name, BufferedReader br, BufferedWriter bw) {
         this.status = false;
@@ -97,10 +97,7 @@ public class ControlTask extends Thread {
             return false;
         }
         final ControlTask other = (ControlTask) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.name, other.name);
     }
 
 }

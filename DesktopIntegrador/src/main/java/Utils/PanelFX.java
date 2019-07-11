@@ -15,28 +15,22 @@ public class PanelFX extends JFXPanel {
     private WebEngine engine;
 
     public PanelFX(int ancho, int alto) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                WebView view = new WebView();
-                engine = view.getEngine();
-                setScene(new Scene(view));
-            }
+        Platform.runLater(() -> {
+            WebView view = new WebView();
+            engine = view.getEngine();
+            setScene(new Scene(view));
         });
         initUI(ancho, alto);
     }
 
     //Metodo para cargar la URL de la pagina web
     public void loadURL(final String url) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                String tmp = toURL(url);
-                if (tmp == null) {
-                    tmp = toURL(url);
-                }
-                engine.load(tmp);
+        Platform.runLater(() -> {
+            String tmp = toURL(url);
+            if (tmp == null) {
+                tmp = toURL(url);
             }
+            engine.load(tmp);
         });
     }
 

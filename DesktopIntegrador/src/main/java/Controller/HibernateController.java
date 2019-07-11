@@ -1,29 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import Models.XDependienteModel;
 import Models.XIpModel;
 import Utils.HibernateUtil;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.SocketException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -57,7 +50,6 @@ public class HibernateController extends Thread {
                 Enumeration interfaces = NetworkInterface.getNetworkInterfaces();
                 while (interfaces.hasMoreElements()) {
                     NetworkInterface iface = (NetworkInterface) interfaces.nextElement();
-// filters out 127.0.0.1 and inactive interfaces
                     if (iface.isLoopback() || !iface.isUp()) {
                         continue;
                     }
@@ -79,7 +71,7 @@ public class HibernateController extends Thread {
     //Loguea la aplicación en la BD, marcándola como disponible.
     public void logDesktopApp(ServerSocket server) {
 
-//  InetAddress ip = null;
+        // InetAddress ip = null;
         String systemipaddress = null;
         try {
             URL url_name = new URL("http://bot.whatismyipaddress.com");
@@ -89,15 +81,10 @@ public class HibernateController extends Thread {
 
             // reads system IPAddress 
             systemipaddress = sc.readLine().trim();
-        } catch (Exception e) {
+        } catch (IOException e) {
             systemipaddress = "Cannot Execute Properly";
         }
 
-        /*    try {
-            ip = InetAddress.getLocalHost();
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(BLogic.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
         session.beginTransaction();
         ipLog = new XIpModel();
 
@@ -176,19 +163,16 @@ public class HibernateController extends Thread {
     public TableModel getRs(String query, Object dependiente) {
         session.beginTransaction();
         TableModel tm;
-        tm = session.doReturningWork(new ReturningWork<TableModel>() {
-            @Override
-            public TableModel execute(Connection connection) throws SQLException {
-                TableModel dtm;
-                try (PreparedStatement stmt = connection.prepareStatement(query)) {
-                    if (dependiente != null) {
-                        stmt.setInt(1, ((XDependienteModel) dependiente).getId());
-                    }
-                    ResultSet rs = stmt.executeQuery();
-                    dtm = Utils.Utils.buildTableModel(rs);
+        tm = session.doReturningWork((Connection connection) -> {
+            TableModel dtm;
+            try (PreparedStatement stmt = connection.prepareStatement(query)) {
+                if (dependiente != null) {
+                    stmt.setInt(1, ((XDependienteModel) dependiente).getId());
                 }
-                return dtm;
+                ResultSet rs = stmt.executeQuery();
+                dtm = Utils.Utils.buildTableModel(rs);
             }
+            return dtm;
         });
         session.getTransaction().commit();
         return tm;
@@ -197,17 +181,14 @@ public class HibernateController extends Thread {
     public TableModel getRs(String query, int id) {
         session.beginTransaction();
         TableModel tm;
-        tm = session.doReturningWork(new ReturningWork<TableModel>() {
-            @Override
-            public TableModel execute(Connection connection) throws SQLException {
-                TableModel dtm;
-                try (PreparedStatement stmt = connection.prepareStatement(query)) {
-                    stmt.setInt(1, id);
-                    ResultSet rs = stmt.executeQuery();
-                    dtm = Utils.Utils.buildTableModel(rs);
-                }
-                return dtm;
+        tm = session.doReturningWork((Connection connection) -> {
+            TableModel dtm;
+            try (PreparedStatement stmt = connection.prepareStatement(query)) {
+                stmt.setInt(1, id);
+                ResultSet rs = stmt.executeQuery();
+                dtm = Utils.Utils.buildTableModel(rs);
             }
+            return dtm;
         });
         session.getTransaction().commit();
         return tm;
